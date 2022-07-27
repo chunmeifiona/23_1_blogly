@@ -4,7 +4,8 @@
 <h1>All Users</h1>
 <ul class="list-group">
     {% for user in users %}
-    <li class="list-group-item">{{user.first_name}} {{user.last_name}} <a href="/users/{{user.id}}">-></a></li>
+    <li class="list-group-item"><a href="/users/{{user.id}}" style="text-decoration:none">{{user.first_name}}
+            {{user.last_name}}</a></li>
     {% endfor %}
 </ul>
 <br>
