@@ -96,6 +96,9 @@ def add_post(user_id):
     content = request.form["content"]
     newPost = Post(title=title, content=content, user_id=user_id)
 
+    tags = request.form.getlist('tag')
+    print(tags)
+
     db.session.add(newPost)
     db.session.commit()
 
