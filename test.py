@@ -37,7 +37,7 @@ class UserTestCase(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn('Ashely', html)
 
-    def test_show_add_form(self):
+    def test_show_add_user_form(self):
         with app.test_client() as client:
             resp = client.get("/users/new")
             html = resp.get_data(as_text=True)
@@ -60,7 +60,7 @@ class UserTestCase(TestCase):
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
-            self.assertIn('<h1>User Details</h1>', html)
+            self.assertIn(self.user.first_name, html)
 
     def test_delete_user(self):
         with app.test_client() as client:

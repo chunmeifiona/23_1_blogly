@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>User Details</h1>
 <section>
-    <div><img src="{{user.image_url}}" class="img-thumbnail " alt=""></div>
+    <div><img src="{{user.image_url}}" class="img-thumbnail " alt="{{user.first_name}}{{user.last_name}}"></div>
     <h4>{{user.first_name}} {{user.last_name}}</h4>
     <form>
         <button formaction="/users/{{user.id}}/edit" formmethod="GET" class="btn btn-primary">Edit</button>
         <button formaction="/users/{{user.id}}/delete" formmethod="POST" class="btn btn-danger">Delete</button>
         <a href="/users"><button type="button" class="btn btn-success">Home</button></a>
     </form>
+    <div class="mt-3">
+        <h5>Posts</h5>
+        <ul>
+            {% for post in user.posts %}
+            <!-- <li>{{post.title}}</li> -->
+            <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+            {% endfor %}
+        </ul>
+        <a href="/users/{{user.id}}/posts/new"><button type="button" class="btn btn-success">Add Post</button></a>
+    </div>
+
 </section>
 {% endblock %}

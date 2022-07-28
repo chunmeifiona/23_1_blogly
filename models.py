@@ -1,5 +1,5 @@
 """Models for Blogly."""
-from email.policy import default
+import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -19,3 +19,20 @@ class User(db.Model):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     image_url = db.Column(db.Text, default=DEFAULT_IMAGE_URL)
+    
+class Post(db.Model):
+    __tablename__='posts'
+
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+    title = db.Column(db.String(50), nullable = False)
+    content = db.Column(db.Text, nullable = False)
+    created_at = db.Column(db.DateTime, nullable = False, default=datetime.datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    user = db.relationship('User', backref = 'posts')
+
+    def __repr__(self):
+        p = self
+        return f"<Post {p.id} {p.title} ---> {p.content} {p.created_at} >"
+
+    
