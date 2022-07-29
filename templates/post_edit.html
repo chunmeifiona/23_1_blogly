@@ -6,16 +6,20 @@
     <form action="/posts/{{post.id}}/edit" method="POST">
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" value={{post.title}} autofocus>
+            <input type="text" class="form-control" id="title" name="title" value="{{post.title}}"" autofocus>
         </div>
-        <div class="form-group">
+        <div class=" form-group">
             <label for="content">Content</label>
             <textarea type="text" class="form-control" id="content" name="content">{{post.content}}</textarea>
         </div>
 
         {% for tag in tags %}
         <div class="form-group">
-            <input type="checkbox" name="{{tag.name}}" id="{{tag.name}}" value="{{tag.name}}">
+            {% if tag.id in checked_tag_ids %}
+            <input type="checkbox" checked name="tag" id="{{tag.name}}" value="{{tag.id}}">
+            {% else %}
+            <input type="checkbox" name="tag" id="{{tag.name}}" value="{{tag.id}}">
+            {% endif %}
             <label for="{{tag.name}}">{{tag.name}}</label>
         </div>
         {% endfor %}

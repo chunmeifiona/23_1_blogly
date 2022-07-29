@@ -15,7 +15,7 @@
 
         {% for tag in tags %}
         <div class="form-group">
-            <input type="checkbox" name="tag" value="{{tag.name}}" id="{{tag.name}}">
+            <input type="checkbox" name="tag" value="{{tag.id}}" id="{{tag.name}}">
             <label for="{{tag.name}}">{{tag.name}}</label>
         </div>
         {% endfor %}
