@@ -18,7 +18,9 @@
         </p>
     </div>
     <form>
+        {% if post.user_id%}
         <button formaction="/users/{{post.user_id}}" formmethod="GET" class="btn btn-warning">Cancel</button>
+        {% endif %}
         <button formaction="/posts/{{post.id}}/edit" formmethod="GET" class="btn btn-primary">Edit</button>
         <button formaction="/posts/{{post.id}}/delete" formmethod="POST" class="btn btn-danger">Delete</button>
         <a href="/users"><button type="button" class="btn btn-success">Home</button></a>
